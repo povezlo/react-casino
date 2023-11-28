@@ -7,7 +7,7 @@ interface IMainLayoutProps {
 
 const MainLayout:FC<IMainLayoutProps> = ({}) => {
   return (
-    <div>
+    <div className='container mx-auto'>
       <div>Header</div>
       <Outlet />
     </div>
