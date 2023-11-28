@@ -9,13 +9,9 @@ interface IMainPageProps {
 const MainPage:FC<IMainPageProps> = ({}) => {
   return (
     <div className="flex gap-4">
-      <Link to={ROUTES.games.roulette}>Roulette</Link>
-      <Link to={ROUTES.games.slots}>Slots</Link>
-      <Link to={ROUTES.games.hummer}>Hummers</Link>
+      <Link to={ROUTES.posts}>Posts</Link>
     </div>
   )
 };
-
-export default MainPage;
 
 export default MainPage;
