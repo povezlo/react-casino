@@ -1,20 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import MainPage from '../../pages';
-import AuthLayout from '../../layouts/AuthLayout/AuthLayout';
-<<<<<<< HEAD
-import GamesLayout from '../../layouts/GamesLayout/GamesLayout';
-import LoginPage from '../../pages/auth/login';
-import RegisterPage from '../../pages/auth/register';
-import RoulettePage from '../../pages/games/roulette';
-import SlotsPage from '../../pages/games/slots';
-import HummerPage from '../../pages/games/hummer';
-=======
-import LoginPage from '../../pages/auth/login';
-import RegisterPage from '../../pages/auth/register';
 import PostsLayout from '../../layouts/PostsLayout/PostsLayout';
 import PostsPage from '../../pages/posts';
->>>>>>> 5efdb4b (create rtk)
+import PostsList from '../../entities/posts/ui/PostsList';
+import UserList from '../../entities/user/ui/UserList';
 
 export const router = createBrowserRouter([
   {
@@ -28,17 +18,21 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    path: 'auth',
-    Component: AuthLayout,
+    path: 'posts',
+    Component: PostsLayout,
     children: [
       {
-        path: 'login',
-        Component: LoginPage
+        index: true,
+        Component: PostsPage,
       },
       {
-        path: 'register',
-        Component: RegisterPage
+        path: 'postlist',
+        Component: PostsList,
+      },
+      {
+        path: 'userlist',
+        Component: UserList,
       }
-    ]
+    ],
   },
 ])

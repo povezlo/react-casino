@@ -1,10 +1,10 @@
 export const ROUTES = {
   main: '/',
-  auth: {
-    login: 'auth/login',
-    register: 'auth/register',
-  },
   posts: 'posts',
+  listWith: {
+    posts: 'postlist',
+    users: 'userlist',
+  },
 }
 
 export const generateUrl = (url: string, params?: any) => {
