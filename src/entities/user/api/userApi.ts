@@ -9,8 +9,4 @@ const userApi = mainApi.injectEndpoints({
   }),
 })
 
-export const {
-  useGetUsersQuery,
-} = userApi
-
-export default userApi;
+export const { useGetUserQuery } = userApi
