@@ -4,7 +4,11 @@ export const ROUTES = {
     login: 'auth/login',
     register: 'auth/register',
   },
-  posts: 'posts',
+  games: {
+    roulette: 'games/roulette',
+    slots: 'games/slots',
+    hummer: 'games/hummer',
+  }
 }
 
 export const generateUrl = (url: string, params?: any) => {

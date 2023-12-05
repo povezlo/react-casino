@@ -19,6 +19,8 @@ export const userSlice = createSlice({
   },
 })
 
+// export const { increment, decrement, incrementByAmount } = userSlice.actions
+
 export const selectUserNickname = (state: RootState) => state.user.nickname;
 
 export default userSlice.reducer

@@ -1,12 +1,27 @@
-import { IUser } from '../model/User'
-import mainApi from '../../../app/store/mainApi';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { BASE_URL } from '../../../app/config/network'
+import { IUser } from '../model/User';
 
-const userApi = mainApi.injectEndpoints({
+interface IRequestGetUser {
+  userId: number;
+}
+
+type IResponseGetUser = Pick<IUser, 'name' | 'nickname'>
+
+export const userApi = createApi({
+  reducerPath: 'userApi',
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getUsers: builder.query<IUser[], null>({
-      query: () => `users`,
+    getUser: builder.query<IResponseGetUser, IRequestGetUser>({
+      query: ({
+        userId,
+      }) => `user/${userId}`,
     }),
   }),
 })
 
-export const { useGetUserQuery } = userApi
+// Export hooks for usage in functional components, which are
+// auto-generated based on the defined endpoints
+export const {
+  useGetUserQuery,
+} = userApi
