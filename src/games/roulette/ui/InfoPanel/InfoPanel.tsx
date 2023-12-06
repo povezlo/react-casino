@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { useAppSelector } from '../../../../app/store/hook';
 import { selectActiveNumber, selectCurrentBet } from '../../slices/rouletteSlice';
+import { selectBalance } from '../../../../entities/wallet/slices/walletSlices';
 
 interface IInfoPanelProps {
 
@@ -36,7 +37,7 @@ const ITEMS: IScoreItem[] = [
 ]
 
 const InfoPanel:FC<IInfoPanelProps> = ({}) => {
-    //const balance = useAppSelector(selectBalance);
+    const balance = useAppSelector(selectBalance);
     const activeNumber = useAppSelector(selectActiveNumber);
     const currentBet = useAppSelector(selectCurrentBet);
 
@@ -46,6 +47,7 @@ const InfoPanel:FC<IInfoPanelProps> = ({}) => {
                 <div key={item.id}>
                     <div>{item.title}</div>
                     <div>
+                        {item.id === 'balance' && balance}
                         {item.id === 'activeNumber' && activeNumber}
                         {item.id === 'currentBet' && currentBet}
                     </div>
