@@ -5,6 +5,8 @@ import mediumCircle from '../../../../assets/roulette/medium-circle.png';
 import internalCircle from '../../../../assets/roulette/internal-circle.png';
 import arrow from '../../../../assets/roulette/arrow.png';
 import wheel from '../../../../assets/roulette/wheel.png';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hook';
+import { selectRouletteSpinRotationInProgress, selectRouletteSpinSpeed, setRouletteSpinSpeed } from '../../slices/rouletteSpinSlice';
 
 interface IRouletteSpinPXProps {}
 
@@ -19,17 +21,24 @@ const POSITION_ARROW = {
     rotation: 0.4,
 }
 
-
-const SPEED = 0.05
-
 const RouletteSpinPX:FC<IRouletteSpinPXProps> = ({}) => {
+    const dispatch = useAppDispatch();
+    const speed = useAppSelector(selectRouletteSpinSpeed)
+    const rotationInProgress = useAppSelector(selectRouletteSpinRotationInProgress)
     const [rotationMedium, setRotationMedium] = useState(0);
     const [rotationWheel, setRotationWheel] = useState(0);
 
     useTick((delta) => {
-        const rotation = delta * SPEED;
-        setRotationMedium(prev => prev + rotation);
-        setRotationWheel(prev => prev - rotation);
+        if (rotationInProgress) {
+            const rotation = delta * speed;
+            setRotationMedium(prev => prev + rotation);
+            setRotationWheel(prev => prev - rotation);
+            if (speed < 0.005) {
+                dispatch(setRouletteSpinSpeed(0));
+            } else {
+                dispatch(setRouletteSpinSpeed(null));
+            }
+        }
     });
 
     return (

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useAppDispatch } from '../../../../app/store/hook';
-import { setBalance } from '../../../../entities/wallet/slices/walletSlices';
+import { setRouletteSpinStartSpeed } from '../../slices/rouletteSpinSlice';
 
 interface IEventPanelProps {}
 
@@ -8,7 +8,7 @@ const EventPanel: FC<IEventPanelProps> = ({}) => {
     const dispatch = useAppDispatch();
     
     const onClick = () => {
-        dispatch(setBalance(200));
+        dispatch(setRouletteSpinStartSpeed());
     };
 
     return (

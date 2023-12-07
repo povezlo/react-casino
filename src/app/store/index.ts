@@ -3,14 +3,15 @@ import { userApi } from '../../entities/user/api/userApi'
 import userSlice from '../../entities/user/slices/userSlices'
 import rouletteSlice from '../../games/roulette/slices/rouletteSlice'
 import walletSlice from '../../entities/wallet/slices/walletSlices'
+import rouletteSpinSlice from '../../games/roulette/slices/rouletteSpinSlice'
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    roulette: rouletteSlice,
     wallet: walletSlice,
+    roulette: rouletteSlice,
+    rouletteSpin: rouletteSpinSlice,
     [userApi.reducerPath]: userApi.reducer,
-    // rouletteSpin: rouletteSpinSlice,
     // slot: slotSlice,
     // hummerCoreSlice: hummerCoreSlice,
   },

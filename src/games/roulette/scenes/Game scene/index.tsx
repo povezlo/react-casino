@@ -1,7 +1,7 @@
-import { Stage } from '@pixi/react';
 import { FC } from 'react';
 import RouletteSpinPX from '../../pixi/ruletteSpin/RuletteSpinPX';
 import GameSceneUI from './GameSceneUI';
+import { Stage } from '../../../../app/config/contextBridge';
 
 interface IRouletteGameSceneProps {}
 

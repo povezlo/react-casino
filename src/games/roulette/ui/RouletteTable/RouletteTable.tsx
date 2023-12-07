@@ -17,9 +17,10 @@ const RouletteTable: FC<IRouletteTableProps> = ({}) => {
         <div className='flex flex-wrap w-[600px]'>
             {ROULETTE_TABLE_NUMBERS.map(({number, color}) => (
                 <div 
+                    key={number}
                     onClick={() => handleClick(number)}
                     className={twMerge(
-                        "w-[50px] h-[50px] flex-center justify-center item-center border border-solid border-white text-xl font-medium cursor-pointer hover:border-yellow",
+                        "w-[50px] h-[50px] flex flex-center justify-center items-center border border-solid border-white text-xl font-medium cursor-pointer hover:border-yellow",
                         color === 'red' && 'bg-red',
                         color === 'black' && 'bg-black',
                         activeNumber === number && 'border-yellow border-2',
