@@ -6,7 +6,9 @@ import internalCircle from '../../../../assets/roulette/internal-circle.png';
 import arrow from '../../../../assets/roulette/arrow.png';
 import wheel from '../../../../assets/roulette/wheel.png';
 import { useAppDispatch, useAppSelector } from '../../../../app/store/hook';
-import { selectRouletteSpinRotationInProgress, selectRouletteSpinSpeed, setRouletteSpinSpeed } from '../../slices/rouletteSpinSlice';
+import { selectRouletteSpinRotationInProgress, selectRouletteSpinSpeed, setRouletteSpinDegreesRotation, setRouletteSpinSpeed } from '../../slices/rouletteSpinSlice';
+import { radianToDegrees } from '../../../../shared/lib/degrees/radianToDegrees';
+import { RouletteLifeCycle, setRouletteLifecycle } from '../../slices/rouletteSlice';
 
 interface IRouletteSpinPXProps {}
 
@@ -16,9 +18,9 @@ const POSITION_SPIN = {
 }
 
 const POSITION_ARROW = {
-    x: 290,
-    y: 220,
-    rotation: 0.4,
+    x: 200,
+    y: 170,
+    rotation: -0.45,
 }
 
 const RouletteSpinPX:FC<IRouletteSpinPXProps> = ({}) => {
@@ -35,6 +37,11 @@ const RouletteSpinPX:FC<IRouletteSpinPXProps> = ({}) => {
             setRotationWheel(prev => prev - rotation);
             if (speed < 0.005) {
                 dispatch(setRouletteSpinSpeed(0));
+                dispatch(setRouletteSpinDegreesRotation(
+                    radianToDegrees(rotationMedium % (Math.PI * 2))
+                ));
+                
+                dispatch(setRouletteLifecycle(RouletteLifeCycle.FINISHED));
             } else {
                 dispatch(setRouletteSpinSpeed(null));
             }
