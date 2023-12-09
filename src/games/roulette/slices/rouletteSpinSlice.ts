@@ -28,9 +28,9 @@ const rouletteSpinSlice = createSlice({
     initialState,
     reducers: {
         setRouletteSpinStartSpeed: (state) => {
-        const randomSpeed = 0.1 + Math.random() * 0.1;
-        state.speed = randomSpeed;
-        state.rotationInProgress = true;
+            const randomSpeed = 0.1 + Math.random() * 0.1;
+            state.speed = randomSpeed;
+            state.rotationInProgress = true;
         },
         setRouletteSpinSpeed: (state, action: PayloadAction<number | null>) => {
         const speed = action.payload;
@@ -42,13 +42,13 @@ const rouletteSpinSlice = createSlice({
         }
         },
         setRouletteSpinDegreesRotation: (state, action) => {
-        state.degreesRotation = action.payload;
-        const deltaIndex = Math.floor((action.payload + (state.stepCircle / 2)) / state.stepCircle);
-        const currentIndex = state.rouletteNumbers.length - deltaIndex
-        state.currentNumber = state.rouletteNumbers[currentIndex];
+            state.degreesRotation = action.payload;
+            const deltaIndex = Math.floor((action.payload + (state.stepCircle / 2)) / state.stepCircle);
+            const currentIndex = state.rouletteNumbers.length - deltaIndex
+            state.currentNumber = state.rouletteNumbers[currentIndex];
         },
         clearRouletteSpin: (state) => {
-        state.currentNumber = null;
+            state.currentNumber = null;
         }
     }
 });

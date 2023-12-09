@@ -14,7 +14,7 @@ export enum RouletteWinOrLose {
 }
 
 interface InitialState {
-  readonly winBet: number;
+    readonly winBet: number;
     lifecycle: `${RouletteLifeCycle}`
     winOrLose: `${RouletteWinOrLose}` | null;
     activeNumber: number | null;

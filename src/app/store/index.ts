@@ -12,8 +12,6 @@ export const store = configureStore({
     roulette: rouletteSlice,
     rouletteSpin: rouletteSpinSlice,
     [userApi.reducerPath]: userApi.reducer,
-    // slot: slotSlice,
-    // hummerCoreSlice: hummerCoreSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(userApi.middleware),
