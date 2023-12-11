@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useAppSelector } from '../../../../app/store/hook';
 import { selectActiveNumber, selectCurrentBet } from '../../slices/rouletteSlice';
+import { selectBalance } from '../../../../entities/wallet/slices/walletSlices';
+import ScoreWindow from '../../shared/scoreWindow';
 
 interface IInfoPanelProps {
 
@@ -10,9 +12,9 @@ export interface IScoreItem {
     id: 'balance' | 'winBet' | 'currentBet' | 'activeNumber';
     title: string;
     icon: string;
-}
+    }
 
-const ITEMS: IScoreItem[] = [
+    const ITEMS: IScoreItem[] = [
     {
         id: 'balance',
         title: 'Balance',
@@ -33,24 +35,57 @@ const ITEMS: IScoreItem[] = [
         title: 'Bet number',
         icon: '',
     },
-]
+    ]
 
 const InfoPanel:FC<IInfoPanelProps> = ({}) => {
-    //const balance = useAppSelector(selectBalance);
+    const balance = useAppSelector(selectBalance);
     const activeNumber = useAppSelector(selectActiveNumber);
     const currentBet = useAppSelector(selectCurrentBet);
+    const winBet = 100;
 
     return (
         <div className="flex justify-between px-10">
-            {ITEMS.map((item) => (
-                <div key={item.id}>
-                    <div>{item.title}</div>
-                    <div>
-                        {item.id === 'activeNumber' && activeNumber}
-                        {item.id === 'currentBet' && currentBet}
+        {ITEMS.map((item) => (
+            <div
+            key={item.id}
+            >
+            <div>{item.title}</div>
+            <div>
+                {item.id === 'balance' && (
+                <ScoreWindow
+                    icon="balance"
+                >
+                    {balance}
+                </ScoreWindow>
+                )}
+                {item.id === 'winBet' && (
+                <ScoreWindow
+                    icon="winBet"
+                >
+                    <div className="pr-1">
+                    {winBet}
                     </div>
-                </div>
-            ))}
+                </ScoreWindow>
+                )}
+                {item.id === 'currentBet' && (
+                <ScoreWindow
+                    icon="currentBet"
+                >
+                    {currentBet}
+                </ScoreWindow>
+                )}
+                {item.id === 'activeNumber' && (
+                <ScoreWindow
+                    icon="activeNumber"
+                >
+                    <div className="pr-6">
+                    {activeNumber}
+                    </div>
+                </ScoreWindow>
+                )}
+            </div>
+            </div>
+        ))}
         </div>
     )
 };
